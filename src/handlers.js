@@ -149,4 +149,10 @@ object with a books property that contains an array of books. */
   return response;
 };
 
-export { addBook, getAllBooks, getBook };
+const updateBook = (request, h) => {
+  const { id } = request.params;
+  const book = books.filter((book) => book.id === id)[0];
+  return book;
+};
+
+export { addBook, getAllBooks, getBook, updateBook };
