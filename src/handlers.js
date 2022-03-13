@@ -149,10 +149,77 @@ object with a books property that contains an array of books. */
   return response;
 };
 
+/**
+ * It's getting the id from the request object. It's getting the index of the book object that has the
+ * same id as the id parameter from the request object. It's checking whether the book name is empty or
+ * not. If it's empty, it will return an error message. It's checking whether the readPage is greater
+ * than pageCount. If it's true, it will return an error message. It's checking whether the book object
+ * that has the same id as the id parameter from the request object is in the books array. If it's not
+ * in the books array, it will return an error message. It's updating the book object that has the same
+ * id as the id parameter from the request object. It's returning a response object with a status of success
+ * @param request - It's the request object that contains the payload property.
+ * @param h - It's a helper object that contains helper functions.
+ * @returns The response object is being returned.
+ */
 const updateBook = (request, h) => {
+  /* It's getting the id from the request object. */
   const { id } = request.params;
-  const book = books.filter((book) => book.id === id)[0];
-  return book;
+  /* It's getting the index of the book object that has the same id as the id parameter from the
+request object. */
+  const idIndex = books.findIndex((book) => book.id === id);
+
+  /* It's checking whether the book name is empty or not. If it's empty, it will return an error
+message. */
+  if (request.payload.name === "") {
+    const response = h.response({
+      status: "fail",
+      message: "Gagal memperbarui buku. Mohon isi nama buku",
+    });
+    response.code(400);
+    return response;
+  }
+
+  /* It's checking whether the readPage is greater than pageCount. If it's true, it will return an
+error message. */
+  if (request.payload.readPage > request.payload.pageCount) {
+    const response = h.response({
+      status: "fail",
+      message:
+        "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount",
+    });
+    response.code(400);
+    return response;
+  }
+
+  /* It's checking whether the book object that has the same id as the id parameter from the
+request object is in the books array. If it's not in the books array, it will return an error
+message. */
+  if (idIndex === -1) {
+    const response = h.response({
+      status: "fail",
+      message: "Gagal memperbarui buku. Id tidak ditemukan",
+    });
+    response.code(404);
+    return response;
+  }
+
+  /* It's updating the book object that has the same id as the id parameter from the request
+object. */
+  books[idIndex] = {
+    ...books[idIndex],
+    ...request.payload,
+    updatedAt: new Date().toString(),
+  };
+
+  /* It's returning a response object with a status of success. */
+  const response = h.response({
+    status: "success",
+    message: "Buku berhasil diperbarui",
+  });
+
+  response.code(200);
+
+  return response;
 };
 
 export { addBook, getAllBooks, getBook, updateBook };
