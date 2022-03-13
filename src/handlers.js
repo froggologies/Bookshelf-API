@@ -110,4 +110,43 @@ const getAllBooks = (request, h) => {
   return response;
 };
 
-export { addBook, getAllBooks };
+/**
+ * It's getting the id from the request object,
+ * filtering the books array and returning the book object that has the same id as the id parameter
+ * from the request object
+ * @param request - It's the request object that's passed to the handler.
+ * @param h - It's a helper object that contains helper functions.
+ * @returns A response object with a status of success and a data property that contains an object with
+ * a books property that contains an array of books.
+ */
+const getBook = (request, h) => {
+  /* It's getting the id from the request object. */
+  const { id } = request.params;
+  /* It's filtering the books array and returning the book object that has the same id as the id
+parameter from the request object. */
+  const book = books.filter((book) => book.id === id);
+
+  /* It's checking whether the book array is empty or not. If it's empty, it will return an error
+message. */
+  if (book.toString() === "") {
+    const response = h.response({
+      status: "fail",
+      message: "Buku tidak ditemukan",
+    });
+    response.code(404);
+    return response;
+  }
+
+  /* It's returning a response object with a status of success and a data property that contains an
+object with a books property that contains an array of books. */
+  const response = h.response({
+    status: "success",
+    data: {
+      book: book,
+    },
+  });
+  response.code(200);
+  return response;
+};
+
+export { addBook, getAllBooks, getBook };
