@@ -69,7 +69,7 @@ const addBook = (request, h) => {
   an success message. */
   books.push(book);
 
-  if (books.findIndex(({ id }) => id === book.id)) {
+  if (books.findIndex(({ id }) => id === book.id) !== -1) {
     const response = h.response({
       status: "success",
       message: "Buku berhasil ditambahkan",
@@ -93,10 +93,12 @@ const addBook = (request, h) => {
 };
 
 /**
- * Return the books array
- * @param request - The request object.
+ * It returns a response with a status of success and a data property that contains an object with a
+ * books property that is an array of books
+ * @param request - The incoming request object.
  * @param h - The response handler.
- * @returns An array of books.
+ * @returns An object with a status of success and a data property that contains an object with a books
+ * property that contains an array of books.
  */
 const getAllBooks = (request, h) => {
   const response = h.response({
