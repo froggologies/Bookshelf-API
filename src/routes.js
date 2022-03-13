@@ -1,10 +1,15 @@
+import { addBook, getAllBooks } from "./handlers.js";
+
 const routes = [
   {
     method: "GET",
-    path: "/",
-    handler: (request, h) => {
-      return "Hellooooooo yoooo";
-    },
+    path: "/books",
+    handler: getAllBooks,
+  },
+  {
+    method: "POST",
+    path: "/books",
+    handler: addBook,
   },
 ];
 
