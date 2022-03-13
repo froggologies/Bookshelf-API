@@ -53,7 +53,7 @@ Properti yang ditebalkan diolah dan didapatkan di sisi _server_. Berikut penjela
 
 Server harus merespons **gagal** bila:
 
-- Client tidak melampirkan properti namepada _request body_. Bila hal ini terjadi, maka *server* akan merespons dengan:
+- Client tidak melampirkan properti name pada _request body_. Bila hal ini terjadi, maka *server* akan merespons dengan:
 
   - Status Code : **400**
   - Response Body:
