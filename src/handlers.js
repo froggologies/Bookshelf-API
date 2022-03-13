@@ -124,7 +124,7 @@ const getBook = (request, h) => {
   const { id } = request.params;
   /* It's filtering the books array and returning the book object that has the same id as the id
 parameter from the request object. */
-  const book = books.filter((book) => book.id === id);
+  const book = books.filter((book) => book.id === id)[0];
 
   /* It's checking whether the book array is empty or not. If it's empty, it will return an error
 message. */
