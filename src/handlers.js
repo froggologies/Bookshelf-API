@@ -1,6 +1,17 @@
 import books from "./books.js";
 import { nanoid } from "nanoid";
 
+/**
+ * It's creating a new book object,
+ * then it's merging the payload with the book object,
+ * then it's checking whether the book name is empty or not,
+ * then it's checking whether the readPage is greater than pageCount,
+ * then it's checking whether the book is already in the books array,
+ * then it's returning an generic error response if all the conditions above don't fulfill
+ * @param request - It's the request object.
+ * @param h - It's a helper object that contains the response and request object.
+ * @returns The response object.
+ */
 const addBook = (request, h) => {
   /* It's creating a new book object. */
   let book = {
@@ -70,7 +81,7 @@ const addBook = (request, h) => {
     return response;
   }
 
-  /* It's returning an error response. */
+  /* It's returning an generic error response if all the conditions above don't fulfill */
   const response = h.response({
     status: "error",
     message: "Buku gagal ditambahkan",
