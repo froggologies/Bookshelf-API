@@ -1,4 +1,5 @@
 import Hapi from "@hapi/hapi";
+import routes from "./routes.js";
 
 /**
  * It creates a new Hapi server, sets its port and host, and starts the server
@@ -8,6 +9,9 @@ const init = async () => {
     port: 8000,
     host: "localhost",
   });
+
+  /* Registering the routes with the server. */
+  server.route(routes);
 
   await server.start();
   console.log("Server running on %s", server.info.uri);
