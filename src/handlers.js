@@ -99,7 +99,13 @@ const addBook = (request, h) => {
  * @returns An array of books.
  */
 const getAllBooks = (request, h) => {
-  return books;
+  const response = h.response({
+    status: "success",
+    data: {
+      books: books,
+    },
+  });
+  return response;
 };
 
 export { addBook, getAllBooks };
