@@ -9,8 +9,8 @@ import { nanoid } from "nanoid";
  * then it's checking whether the book is already in the books array,
  * then it's returning an generic error response if all the conditions above don't fulfill
  * @param request - It's the request object.
- * @param h - It's a helper object that contains the response and request object.
- * @returns The response object.
+ * @param h - It's a helper function that comes with the koa-router. It's used to return a response.
+ * @returns a response object.
  */
 const addBook = (request, h) => {
   /* It's creating a new book object. */
@@ -66,7 +66,7 @@ const addBook = (request, h) => {
   }
 
   /* It's checking whether the book is already in the books array. If it's true, it will return
-  an error message. */
+  an success message. */
   books.push(book);
 
   if (books.findIndex(({ id }) => id === book.id)) {
