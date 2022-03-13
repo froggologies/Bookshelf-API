@@ -14,14 +14,14 @@ API yang Anda buat harus dapat menyimpan buku melalui _route_:
 
   ```json
   {
-    "name": string,   
-    "year": number, 
-    "author": string,
-    "summary": string, 
-    "publisher": string,
-    "pageCount": number, 
-    "readPage": number,   
-    "reading": boolean
+    "name": "string",
+    "year": "number",
+    "author": "string",
+    "summary": "string",
+    "publisher": "string",
+    "pageCount": "number",
+    "readPage": "number",
+    "reading": "boolean"
   }
   ```
 
@@ -205,15 +205,15 @@ API yang Anda buat harus dapat mengubah data buku berdasarkan id melalui _route_
 - Body Request:
 
   ```json
-  {   
-    "name": string,   
-    "year": number,   
-    "author": string,   
-    "summary": string,   
-    "publisher": string,   
-    "pageCount": number,   
-    "readPage": number,   
-    "reading": boolean
+  {
+    "name": "string",
+    "year": "number",
+    "author": "string",
+    "summary": "string",
+    "publisher": "string",
+    "pageCount": "number",
+    "readPage": "number",
+    "reading": "boolean"
   }
   ```
 
