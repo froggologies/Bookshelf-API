@@ -208,6 +208,7 @@ object. */
   books[idIndex] = {
     ...books[idIndex],
     ...request.payload,
+    finished: request.payload.readPage === request.payload.pageCount,
     updatedAt: new Date().toString(),
   };
 
