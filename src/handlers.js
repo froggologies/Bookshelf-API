@@ -177,7 +177,7 @@ request object. */
 
   /* It's checking whether the book name is empty or not. If it's empty, it will return an error
 message. */
-  if (request.payload.name === "") {
+  if (!request.payload.name) {
     const response = h.response({
       status: "fail",
       message: "Gagal memperbarui buku. Mohon isi nama buku",
