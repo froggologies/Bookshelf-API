@@ -135,7 +135,7 @@ parameter from the request object. */
 
   /* It's checking whether the book array is empty or not. If it's empty, it will return an error
 message. */
-  if (book.toString() === "") {
+  if (!book) {
     const response = h.response({
       status: "fail",
       message: "Buku tidak ditemukan",

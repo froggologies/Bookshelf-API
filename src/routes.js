@@ -7,14 +7,14 @@ const routes = [
     handler: getAllBooks,
   },
   {
-    method: "POST",
-    path: "/books",
-    handler: addBook,
-  },
-  {
     method: "GET",
     path: "/books/{id}",
     handler: getBook,
+  },
+  {
+    method: "POST",
+    path: "/books",
+    handler: addBook,
   },
   {
     method: "PUT",
