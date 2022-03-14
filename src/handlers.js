@@ -105,7 +105,13 @@ const getAllBooks = (request, h) => {
   const response = h.response({
     status: "success",
     data: {
-      books: books,
+      books: books.map((book) => {
+        return {
+          id: book.id,
+          name: book.name,
+          publisher: book.publisher,
+        };
+      }),
     },
   });
   return response;
