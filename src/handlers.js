@@ -29,6 +29,7 @@ const addBook = (request, h) => {
     updatedAt: "",
   };
 
+  const dateNow = new Date().toString();
   book = {
     ...book,
     /* It's generating a unique id for each book. */
@@ -36,8 +37,8 @@ const addBook = (request, h) => {
     /* It's merging the payload with the book object. */
     ...request.payload,
     finished: request.payload.pageCount === request.payload.readPage,
-    insertedAt: new Date().toString(),
-    updatedAt: new Date().toString(),
+    insertedAt: dateNow,
+    updatedAt: dateNow,
   };
 
   /* It's checking whether the book name is empty or not. If it's empty, it will return an error
