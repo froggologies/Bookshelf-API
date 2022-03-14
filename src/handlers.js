@@ -94,35 +94,41 @@ const addBook = (request, h) => {
 };
 
 /**
- * It returns a response with a status of success and a data property that contains an object with a
- * books property that is an array of books
- * @param request - The incoming request object.
- * @param h - The response handler.
- * @returns An object with a status of success and a data property that contains an object with a books
- * property that contains an array of books.
+ * It's getting the name, reading, and finished properties from the request object. It's filtering the
+ * books array and returning the book object that has the same name as the name parameter from the
+ * request object. It's filtering the books array and returning the book object that has the same
+ * reading property as the reading parameter from the request object. It's filtering the books array
+ * and returning the book object that has the same finished property as the finished parameter from the
+ * request object. It's returning a response object with a status of success and a data property that
+ * contains an object with a books property that contains an array of books
+ * @param request - The request object.
+ * @param h - The response helper object.
+ * @returns An object with a status property of success and a data property that contains an object
+ * with a books property that contains an array of books.
  */
 const getAllBooks = (request, h) => {
+  /* It's getting the name, reading, and finished properties from the request object. */
   const { name, reading, finished } = request.query;
-  // let returnedBook = books.map((book) => {
-  //   return {
-  //     id: book.id,
-  //     name: book.name,
-  //     publisher: book.publisher,
-  //   };
-  // });
+
   let returnedBook = books;
 
+  /* It's filtering the books array and returning the book object that has the same name as the name
+parameter from the request object. */
   if (name) {
     returnedBook = returnedBook.filter((book) =>
       book.name.toLowerCase().includes(name.toLowerCase())
     );
   }
+  /* It's filtering the books array and returning the book object that has the same reading property
+as the reading parameter from the request object. */
   if (reading === "0") {
     returnedBook = returnedBook.filter((book) => book.reading === false);
   }
   if (reading === "1") {
     returnedBook = returnedBook.filter((book) => book.reading === true);
   }
+  /* It's filtering the books array and returning the book object that has the same finished property
+as the finished parameter from the request object. */
   if (finished === "0") {
     returnedBook = returnedBook.filter((book) => book.finished === false);
   }
@@ -130,6 +136,8 @@ const getAllBooks = (request, h) => {
     returnedBook = returnedBook.filter((book) => book.finished === true);
   }
 
+  /* It's returning a response object with a status of success and a data property that contains an
+  object with a books property that contains an array of books. */
   const response = h.response({
     status: "success",
     data: {
