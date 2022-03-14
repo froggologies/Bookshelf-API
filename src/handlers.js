@@ -102,10 +102,38 @@ const addBook = (request, h) => {
  * property that contains an array of books.
  */
 const getAllBooks = (request, h) => {
+  const { name, reading, finished } = request.query;
+  // let returnedBook = books.map((book) => {
+  //   return {
+  //     id: book.id,
+  //     name: book.name,
+  //     publisher: book.publisher,
+  //   };
+  // });
+  let returnedBook = books;
+
+  if (name) {
+    returnedBook = returnedBook.filter((book) =>
+      book.name.toLowerCase().includes(name.toLowerCase())
+    );
+  }
+  if (reading === "0") {
+    returnedBook = returnedBook.filter((book) => book.reading === false);
+  }
+  if (reading === "1") {
+    returnedBook = returnedBook.filter((book) => book.reading === true);
+  }
+  if (finished === "0") {
+    returnedBook = returnedBook.filter((book) => book.finished === false);
+  }
+  if (finished === "1") {
+    returnedBook = returnedBook.filter((book) => book.finished === true);
+  }
+
   const response = h.response({
     status: "success",
     data: {
-      books: books.map((book) => {
+      books: returnedBook.map((book) => {
         return {
           id: book.id,
           name: book.name,
