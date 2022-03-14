@@ -230,4 +230,41 @@ object. */
   return response;
 };
 
-export { addBook, getAllBooks, getBook, updateBook };
+/**
+ * It's getting the id from the request object. It's getting the index of the book object that has the
+ * same id as the id parameter from the request object. It's checking whether the book object that has
+ * the same id as the id parameter from the request object is in the books array. If it's not in the
+ * books array, it will return an error message
+ * @param request - It's the request object that's passed to the handler.
+ * @param h - It's a helper object that contains helper functions.
+ * @returns It's returning a response object.
+ */
+const deleteBook = (request, h) => {
+  /* It's getting the id from the request object. */
+  const { id } = request.params;
+  /* It's getting the index of the book object that has the same id as the id parameter from the
+  request object. */
+  const idIndex = books.findIndex((book) => book.id === id);
+
+  /* It's checking whether the book object that has the same id as the id parameter from the
+request object is in the books array. If it's not in the books array, it will return an error
+message. */
+  if (idIndex !== -1) {
+    books.splice(idIndex, 1);
+    const response = h.response({
+      status: "success",
+      message: "Buku berhasil dihapus",
+    });
+    response.code(200);
+    return response;
+  } else {
+    const response = h.response({
+      status: "fail",
+      message: "Buku gagal dihapus. Id tidak ditemukan",
+    });
+    response.code(404);
+    return response;
+  }
+};
+
+export { addBook, getAllBooks, getBook, updateBook, deleteBook };

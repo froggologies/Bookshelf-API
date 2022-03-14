@@ -1,4 +1,10 @@
-import { addBook, getAllBooks, getBook, updateBook } from "./handlers.js";
+import {
+  addBook,
+  deleteBook,
+  getAllBooks,
+  getBook,
+  updateBook,
+} from "./handlers.js";
 
 const routes = [
   {
@@ -20,6 +26,11 @@ const routes = [
     method: "PUT",
     path: "/books/{id}",
     handler: updateBook,
+  },
+  {
+    method: "DELETE",
+    path: "/books/{id}",
+    handler: deleteBook,
   },
 ];
 
